@@ -1,0 +1,10 @@
+{
+  "name": "Online Certificate Generator",
+  "description": "A PHP app that makes PDF certificates",
+  "repository": "https://github.com/heroku/php-getting-started",
+  "addons": [],
+  "expo": {
+    "version": "2.0"
+  }
+}
+
