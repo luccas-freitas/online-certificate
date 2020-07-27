@@ -1,7 +1,3 @@
-<!--            <form class="form-inline my-2 my-lg-0 float-right">
-                <input class="form-control mr-sm-2" type="text" placeholder="Código do certificado" aria-label="Buscar">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-            </form>-->
 <!DOCTYPE html>
 <html>
 <head>
