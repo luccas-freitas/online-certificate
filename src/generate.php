@@ -50,7 +50,7 @@
         $pdf->Output('I', 'certificado.pdf');
 
         // --------- Enviando documento por e-mail --- //
-        $subject = 'Certificado - Silp Eventos & Treinamentos';
+        $subject = 'Set a nice subject here';
         $messageBody = "Olá $row->nome!
             <br><br>
         É com grande prazer entregamos o seu certificado.
@@ -58,9 +58,9 @@
         Ele segue em anexo neste e-mail.
         <br><br>
         Atenciosamente,
-        <br>SILP | Eventos & Treinamentos
+        <br>Fake | Company
         <br>
-        <a href='https://www.silp.com.br/'>https://www.silp.com.br/</a>";
+        <a href='https://www.fakewebsite.com/'>https://www.fakewebsite.com/</a>";
 
         $pdfdoc = $pdf->Output('', 'S');
         $mail = new PHPMailer(true);
@@ -69,13 +69,13 @@
             $mail->SMTPDebug = SMTP::DEBUG_SERVER;
             $mail->isSMTP();
 
-            $mail->Host = 'smtp.umbler.com';
+            $mail->Host = 'smtp.localhost';
             $mail->SMTPAuth = true;
-            $mail->Username = 'contato@silp.com.br';
-            $mail->Password = 'silp@@2018';
+            $mail->Username = 'contact@fakewebsite.com';
+            $mail->Password = 'f4k3p@ssw0rd';
             $mail->Port = 587;
 
-            $mail->SetFrom("contato@silp.com.br", "Certificado - Silp Eventos & Treinamentos");
+            $mail->SetFrom("contact@fakewebsite.com", "Certificado - Fake Company");
             $mail->AddAddress($row->email);
             $mail->Subject = $subject;
 
@@ -95,7 +95,7 @@
         print
             '<script type="text/javascript">
             alert("Erro ao gerar certificado. Favor entrar em contato com nosso " +
-             "suporte via e-mail: contato@silp.com.br");
+             "suporte via e-mail: contact@fakewebsite.com");
             location="../home/home.php";
         </script>';
     }
