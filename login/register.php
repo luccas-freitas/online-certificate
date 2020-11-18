@@ -1,34 +1,61 @@
 <?php
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+
 session_start();
 require_once '../config.php';
 
-if ($stmt = $PDO->prepare('SELECT id, password FROM accounts WHERE cpf = ?')) {
+if ($stmt = $PDO->prepare('SELECT null FROM accounts WHERE cpf = ?')) {
     $stmt->execute(array($_POST['newcpf']));
 
     if ($stmt->rowCount() > 0) {
-        alert('CPF já cadastrado.', '../index.html');
+        alert('CPF já cadastrado.', '../index.php');
     } else {
         if ($stmt = $PDO->prepare('INSERT INTO accounts (cpf, password, email, activation_code) VALUES (?, ?, ?, ?)')) {
-            if (preg_match('/[0-9]+/', $_POST['newcpf']) == 0) {
-                alert('CPF inválido!', '../index.html');
-            }
+
             $uniqid = uniqid();
             $password = password_hash($_POST['newpassword'], PASSWORD_DEFAULT);
             $stmt->execute(array($_POST['newcpf'], $password, $_POST['email'], $uniqid));
 
-            $from    = 'noreply@silp.com.br';
-            $subject = 'Account Activation Required';
-            $headers = 'From: ' . $from . "\r\n" . 'Reply-To: ' . $from . "\r\n" . 'X-Mailer: PHP/' . phpversion() . "\r\n" . 'MIME-Version: 1.0' . "\r\n" . 'Content-Type: text/html; charset=UTF-8' . "\r\n";
-            $activate_link = 'http://www.silp.com.br/cursos/certificados/activate.php?email=' . $_POST['email'] . '&code=' . $uniqid;
-            $message = '<p>Por favor, clique no link abaixo para ativar seu cadastro: <a href="' . $activate_link . '">' . $activate_link . '</a></p>';
-            mail($_POST['email'], $subject, $message, $headers);
+            try {
+                $mail = new PHPMailer(true);
 
-            alert('E-mail de ativação enviado. Por favor, cheque sua caixa de entrada.', '../index.html');
+                $activate_link = 'localhost:8080/login/activate.php?email=' . $_POST['email'] . '&code=' . $uniqid;
+                $message = '<p>Por favor, clique no link abaixo para ativar seu cadastro: <a href="' . $activate_link . '">' . $activate_link . '</a></p>';
+
+                $mail->setLanguage('pt_br');
+/*                $mail->SMTPDebug = SMTP::DEBUG_SERVER;*/
+                $mail->SMTPSecure = 'ssl';
+                $mail->isSMTP();
+
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'ff.luccas@gmail.com';
+                $mail->Password = '061294lucc';
+                $mail->Port = 465;
+
+                $mail->SetFrom("ff.luccas@gmail.com", "SILP - Eventos & Treinamentos");
+                $mail->AddAddress($_POST['email']);
+                $mail->Subject = 'Complete seu cadastro para acessar seus certificados!';
+
+                $mail->isHTML(true);
+                $mail->Body = $message;
+
+                $mail->send();
+
+                alert('E-mail de ativação enviado. Por favor, cheque sua caixa de entrada.', '../index.php');
+            } catch (Exception $e) {
+                print
+                '<script type="text/javascript">
+                    alert(\'' . $e->errorMessage() . '\');
+                </script>';
+            }
         } else {
-            alert('Erro Interno. Por favor, contate o suporte: contato@silp.com.br', '../index.html');
+            alert('Erro Interno. Por favor, contate o suporte: contato@silp.com.br', '../index.php');
         }
     }
     $stmt->closeCursor();
 } else {
-    alert('Erro Interno. Por favor, contate o suporte: contato@silp.com.br', '../index.html');
+    alert('Erro Interno. Por favor, contate o suporte: contato@silp.com.br', '../index.php');
 }

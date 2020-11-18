@@ -2,7 +2,9 @@
     "require" : {
       "fpdf/fpdf": "^1.82",
       "phpmailer/phpmailer": "~6.1",
-      "ext-pdo": "*"
+      "ext-pdo": "*",
+      "ext-iconv": "*",
+      "ext-mbstring": "*"
     },
     "require-dev": {
       "heroku/heroku-buildpack-php": "*"

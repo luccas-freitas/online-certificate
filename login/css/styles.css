@@ -1,17 +1,14 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
-* {
+body {
     box-sizing: border-box;
     font-family: -apple-system, BlinkMacSystemFont, "segoe ui", roboto, oxygen, ubuntu, cantarell, "fira sans", "droid sans", "helvetica neue", Arial, sans-serif;
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-}
-body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #76b852; /* #435165 */
     font-family: "Roboto", sans-serif;
 }
 .login-page {
@@ -68,4 +65,201 @@ body {
 }
 .form .register-form {
     display: none;
+}
+:root {
+    --primary-color: #446084;
+}
+
+/* Site Width */
+.header-main {
+    height: 141px
+}
+
+#logo img {
+    max-height: 141px
+}
+
+#logo {
+    width: 280px;
+}
+
+.stuck #logo img {
+    padding: 11px 0;
+}
+
+.header-bottom {
+    min-height: 43px
+}
+
+.header-top {
+    min-height: 40px
+}
+
+.transparent .header-main {
+    height: 30px
+}
+
+.transparent #logo img {
+    max-height: 30px
+}
+
+.has-transparent + .page-title:first-of-type, .has-transparent + #main > .page-title, .has-transparent + #main > div > .page-title, .has-transparent + #main .page-header-wrapper:first-of-type .page-title {
+    padding-top: 60px;
+}
+
+.header.show-on-scroll, .stuck .header-main {
+    height: 90px !important
+}
+
+.stuck #logo img {
+    max-height: 90px !important
+}
+
+.header-bg-color, .header-wrapper {
+    background-color: #ffffff
+}
+
+.header-bottom {
+    background-color: #153e4d
+}
+
+.header-main .nav > li > a {
+    line-height: 16px
+}
+
+.stuck .header-main .nav > li > a {
+    line-height: 50px
+}
+
+.header-bottom-nav > li > a {
+    line-height: 16px
+}
+
+@media (max-width: 549px) {
+    .header-main {
+        height: 70px
+    }
+
+    #logo img {
+        max-height: 70px
+    }
+}
+
+.header-top {
+    background-color: #244b5f !important;
+}
+
+body {
+    font-size: 85%;
+}
+
+@media screen and (max-width: 549px) {
+    body {
+        font-size: 100%;
+    }
+}
+
+body {
+    font-family: "Poppins", sans-serif
+}
+
+body {
+    font-weight: 300
+}
+
+.nav > li > a {
+    font-family: "Poppins", sans-serif;
+}
+
+.nav > li > a {
+    font-weight: 700;
+}
+
+h1, h2, h3, h4, h5, h6, .heading-font, .off-canvas-center .nav-sidebar.nav-vertical > li > a {
+    font-family: "Poppins", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .heading-font, .banner h1, .banner h2 {
+    font-weight: 700;
+}
+
+.alt-font {
+    font-family: "Dancing Script", sans-serif;
+}
+
+.header:not(.transparent) .header-nav.nav > li > a {
+    color: #1d4154;
+}
+
+.header:not(.transparent) .header-nav.nav > li > a:hover, .header:not(.transparent) .header-nav.nav > li.active > a, .header:not(.transparent) .header-nav.nav > li.current > a, .header:not(.transparent) .header-nav.nav > li > a.active, .header:not(.transparent) .header-nav.nav > li > a.current {
+    color: #56859c;
+}
+
+.header-nav.nav-line-bottom > li > a:before, .header-nav.nav-line-grow > li > a:before, .header-nav.nav-line > li > a:before, .header-nav.nav-box > li > a:hover, .header-nav.nav-box > li.active > a, .header-nav.nav-pills > li > a:hover, .header-nav.nav-pills > li.active > a {
+    color: #FFF !important;
+    background-color: #56859c;
+}
+
+.header-main .social-icons, .header-main .cart-icon strong, .header-main .menu-title, .header-main .header-button > .button.is-outline, .header-main .nav > li > a > i:not(.icon-angle-down) {
+    color: #56859c !important;
+}
+
+.header-main .header-button > .button.is-outline, .header-main .cart-icon strong:after, .header-main .cart-icon strong {
+    border-color: #56859c !important;
+}
+
+.header-main .header-button > .button:not(.is-outline) {
+    background-color: #56859c !important;
+}
+
+.header-main .current-dropdown .cart-icon strong, .header-main .header-button > .button:hover, .header-main .header-button > .button:hover i, .header-main .header-button > .button:hover span {
+    color: #FFF !important;
+}
+
+.header-main .menu-title:hover, .header-main .social-icons a:hover, .header-main .header-button > .button.is-outline:hover, .header-main .nav > li > a:hover > i:not(.icon-angle-down) {
+    color: #56859c !important;
+}
+
+.header-main .current-dropdown .cart-icon strong, .header-main .header-button > .button:hover {
+    background-color: #56859c !important;
+}
+
+.header-main .current-dropdown .cart-icon strong:after, .header-main .current-dropdown .cart-icon strong, .header-main .header-button > .button:hover {
+    border-color: #56859c !important;
+}
+
+.label-new.menu-item > a:after {
+    content: "Novo";
+}
+
+.label-hot.menu-item > a:after {
+    content: "Quente";
+}
+
+.label-sale.menu-item > a:after {
+    content: "Promoção";
+}
+
+.label-popular.menu-item > a:after {
+    content: "Popular";
+}
+:root {
+    --qlwapp-scheme-brand: #ffffff;
+    --qlwapp-scheme-text: #1ab248;
+    --qlwapp-scheme-qlwapp_scheme_form_nonce: 387 b1b99de;
+}
+
+#qlwapp .qlwapp-toggle,
+#qlwapp .qlwapp-box .qlwapp-header,
+#qlwapp .qlwapp-box .qlwapp-user,
+#qlwapp .qlwapp-box .qlwapp-user:before {
+    background-color: var(--qlwapp-scheme-brand);
+}
+
+#qlwapp .qlwapp-toggle,
+#qlwapp .qlwapp-toggle .qlwapp-icon,
+#qlwapp .qlwapp-toggle .qlwapp-text,
+#qlwapp .qlwapp-box .qlwapp-header,
+#qlwapp .qlwapp-box .qlwapp-user {
+    color: var(--qlwapp-scheme-text);
 }

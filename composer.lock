@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ae4933e36569ca32cab398ae3115ab30",
+    "content-hash": "8ea881794b197bfac4109a93e9a57b87",
     "packages": [
         {
             "name": "fpdf/fpdf",
@@ -169,7 +169,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+        "ext-iconv": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "1.1.0"

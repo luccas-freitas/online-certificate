@@ -11,14 +11,14 @@ if (isset($_GET['email'], $_GET['code'])) {
                 $newcode = 'activated';
                 $stmt->execute(array($newcode, $_GET['email'], $_GET['code']));
 
-                alert('Cadastro validado com sucesso. Agora você já pode acessar seus certificados.', '../home.php');
+                alert('Cadastro validado com sucesso. Agora você já pode acessar seus certificados.', '../home/home.php');
             }
         } else {
-            alert('Este cadastro já está ativado.', '../index.html');
+            alert('Este cadastro já está ativado.', '../index.php');
         }
     } else {
-        alert('Parâmetros inválidos.', '../index.html');
+        alert('Parâmetros inválidos.', '../index.php');
     }
 } else {
-    header('Location: ../index.html');
+    header('Location: ../index.php');
 }

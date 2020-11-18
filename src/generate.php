@@ -22,7 +22,7 @@
 
         $pdf = new Fpdf();
         $pdf->SetAutoPageBreak(false, 0);
-        $pdf->AddFont('ITCEDSCR','', 'ITCEDSCR.php');
+        $pdf->AddFont('AlexBrush-Regular','', 'AlexBrush-Regular.php');
 
         // Frente
         $frente = "layout/" . $row->filename . ".jpg";
@@ -31,9 +31,12 @@
         $pdf->Image($frente,0,0,300);
 
         // Nome
-        $pdf->SetFont('ITCEDSCR', '', 40); // Tipo de fonte e tamanho
+        $str = $row->nome;
+        $nome = iconv(mb_detect_encoding($str), 'windows-1252', $str);
+
+        $pdf->SetFont('AlexBrush-Regular', '', 40); // Tipo de fonte e tamanho
         $pdf->SetXY(53,83); //Parte chata onde tem que ficar ajustando a posição X e Y
-        $pdf->MultiCell(220, 10, $row->nome, '', 'C', 0); // Tamanho width e height e posição
+        $pdf->MultiCell(220, 10, $nome, '', 'C', 0); // Tamanho width e height e posição
 
         // Verso
         $verso = "layout/" . $row->filename . "-verso.jpg";

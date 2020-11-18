@@ -1,24 +1,23 @@
 <?php
-        // We need to use sessions, so you should always start sessions using the below code.
-        session_start();
-        require_once '../config.php';
+    session_start();
+    require_once '../config.php';
 
-        if (!isset($_SESSION['loggedin'])) {
-            header('Location: ../index.html');
-            exit;
-        } else {
-            $nome = explode(' ', $_SESSION['nome'])[0];
-            $query = 'SELECT participantes.id, eventos.titulo, eventos.dia, eventos.cidade, eventos.uf
-                FROM eventos, participantes 
-                WHERE eventos.id = participantes.evento_id 
-                AND participantes.cpf = ' . $_SESSION['cpf'];
-            if ($stmt = $PDO->prepare($query)) {
-                $stmt->execute();
-                if ($stmt->rowCount() > 0) {
-                    $certificados = $stmt->fetchAll(PDO::FETCH_OBJ);
-                }
+    if (!isset($_SESSION['loggedin'])) {
+        header('Location: ../index.php');
+        exit;
+    } else {
+        $query = 'SELECT participantes.nome, participantes.id, eventos.titulo, eventos.dia, eventos.cidade, eventos.uf
+            FROM eventos, participantes 
+            WHERE eventos.id = participantes.evento_id 
+            AND participantes.cpf = ' . $_SESSION['cpf'];
+        if ($stmt = $PDO->prepare($query)) {
+            $stmt->execute();
+            if ($stmt->rowCount() > 0) {
+                $certificados = $stmt->fetchAll(PDO::FETCH_OBJ);
+                $first_name = explode(" ", $certificados[0]->nome)[0];
             }
         }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -32,7 +31,11 @@
 </head>
 <body class="bg-light">
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-    <a class="navbar-brand mr-auto mr-lg-0" href="#">Bem-vindo, <?=$nome?>!</a>
+    <a class="navbar-brand mr-auto mr-lg-0" href="#">Bem-vindo,
+        <?=
+            $first_name;
+        ?>!
+    </a>
     <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
         <span class="navbar-toggler-icon"></span>
     </button>
