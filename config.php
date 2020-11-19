@@ -4,7 +4,7 @@ require 'vendor/autoload.php';
 try{
     define( 'MYSQL_HOST', 'localhost' );
     define( 'MYSQL_USER', 'luccas' );
-    define( 'MYSQL_PASSWORD', 'lucc061294' );
+    define( 'MYSQL_PASSWORD', '061294' );
     define( 'MYSQL_DB_NAME', 'certificados' );
 
     $PDO = new PDO( 'mysql:host=' . MYSQL_HOST
