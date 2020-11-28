@@ -31,11 +31,11 @@ if ($stmt = $PDO->prepare('SELECT null FROM accounts WHERE cpf = ?')) {
 
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
-                $mail->Username = 'ff.luccas@gmail.com';
-                $mail->Password = '061294lucc';
+                $mail->Username = 'contact@company.com';
+                $mail->Password = 'CH4NG3_M3';
                 $mail->Port = 465;
 
-                $mail->SetFrom("ff.luccas@gmail.com", "SILP - Eventos & Treinamentos");
+                $mail->SetFrom("contact@company.com", "FAKE - Fictional Account Knowledge Enterprise");
                 $mail->AddAddress($_POST['email']);
                 $mail->Subject = 'Complete seu cadastro para acessar seus certificados!';
 

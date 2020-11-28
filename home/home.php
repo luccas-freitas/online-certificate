@@ -10,6 +10,9 @@
             FROM eventos, participantes 
             WHERE eventos.id = participantes.evento_id 
             AND participantes.cpf = ' . $_SESSION['cpf'];
+
+        $query .= " ORDER BY eventos.dia DESC";
+
         if ($stmt = $PDO->prepare($query)) {
             $stmt->execute();
             if ($stmt->rowCount() > 0) {
@@ -62,31 +65,28 @@
     </div>
     <div class="my-3 p-3 bg-white rounded shadow-sm">
         <?php
+            print '<form action="../src/generate.php" method="post" id="generate_form" >';
             foreach ($certificados as $row) {
                 print
-            '<div class="media text-muted pt-3">
-                <img class="bd-placeholder-img mr-2 rounded" width="32" height="32" src="img/certificate.png" alt=""/>
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <strong class="text-gray-dark">' . $row->titulo . '</strong>
-                        <form action="../src/generate.php" method="post" id="generate_form" >
-                            <input type="hidden" name="certificado_id" value=' . $row->id . '>
-                            <a href="#" onClick="document.getElementById(\'generate_form\').submit();">
-                                Download
-                            </a>
-                        </form>
-                    </div>
-                    <span class="d-block">'
-                    . date('d/m/Y', strtotime($row->dia))
-                    . ' - '
-                    . $row->cidade
-                    . '/'
-                    . $row->uf
-                    .
-                    '</span>
-                </div>
-            </div>';
+            "<div class=\"media text-muted pt-3\">" .
+                "<img class=\"bd-placeholder-img mr-2 rounded\" width=\"32\" height=\"32\" src=\"img/certificate.png\" alt=\"\"/>" .
+                "<div class=\"media-body pb-3 mb-0 small lh-125 border-bottom border-gray\">" .
+                    "<div class=\"d-flex justify-content-between align-items-top w-100\">" .
+                        "<strong class=\"text-gray-dark\">" . 
+                        $row->titulo . 
+                        "</strong>" .
+                        "<button class=\"btn btn-success btn-sm\" type=\"submit\" name=\"certificado_id\" value=\"" . 
+                        $row->id . "\">" .
+                        "Download</button></div>" .
+                        "<span class=\"d-block\">" .
+                            date('d/m/Y', strtotime($row->dia)) .
+                            " - " .
+                            $row->cidade .
+                            "/" .
+                            $row->uf .
+                        "</span></div></div>";
             }
+            print '</form>';
         ?>
     </div>
 </main>
