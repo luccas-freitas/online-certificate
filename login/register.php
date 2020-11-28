@@ -21,7 +21,7 @@ if ($stmt = $PDO->prepare('SELECT null FROM accounts WHERE cpf = ?')) {
             try {
                 $mail = new PHPMailer(true);
 
-                $activate_link = 'localhost:8080/login/activate.php?email=' . $_POST['email'] . '&code=' . $uniqid;
+                $activate_link = '../login/activate.php?email=' . $_POST['email'] . '&code=' . $uniqid;
                 $message = '<p>Por favor, clique no link abaixo para ativar seu cadastro: <a href="' . $activate_link . '">' . $activate_link . '</a></p>';
 
                 $mail->setLanguage('pt_br');
